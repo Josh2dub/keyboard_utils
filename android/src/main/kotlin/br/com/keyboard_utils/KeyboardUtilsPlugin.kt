@@ -10,7 +10,6 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
-import io.flutter.plugin.common.PluginRegistry
 
 import android.app.Dialog
 import android.graphics.Point
@@ -51,18 +50,6 @@ class KeyboardUtilsPlugin : FlutterPlugin, ActivityAware, EventChannel.StreamHan
         activityPluginBinding = null
         keyboardUtil?.unregisterKeyboardHeightListener()
         keyboardUtil = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun registerWith(registrar: PluginRegistry.Registrar) {
-            if (registrar.activity() == null) {
-                return
-            }
-
-            val keyboardUtilsPlugin = KeyboardUtilsPlugin()
-            keyboardUtilsPlugin.setup(registrar.activity(), registrar.messenger())
-        }
     }
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
